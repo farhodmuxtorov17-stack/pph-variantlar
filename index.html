@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prime Property Holdings — варианты сайта</title><link rel="icon" href="v1/img/pph-mark.svg" type="image/svg+xml">
+<style>
+:root{--bg:#16181B;--card:#1F2226;--ink:#EEEBE5;--mute:#9A968E;--line:rgba(238,235,229,.1);--ac:#C9A45C}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg)}
+body{color:var(--ink);font:400 15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:max(56px,env(safe-area-inset-top)) 32px 72px}
+.wrap{max-width:1360px;margin:0 auto}
+header{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:end;padding-bottom:40px;margin-bottom:40px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.brand img{width:40px;height:40px;filter:invert(1)}
+.brand span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+h1{font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.03em;font-weight:600}
+header p{color:var(--mute);max-width:46ch}
+ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+li a{display:block;color:inherit;text-decoration:none;background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--line);transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s}
+@media (hover:hover){li a:hover{transform:translateY(-4px);border-color:rgba(201,164,92,.5)}li a:hover .go{background:var(--ac);color:#16181B}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+li img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.m{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:20px 22px 22px}
+.n{font:600 14px/1 ui-monospace,Menlo,monospace;color:var(--ac)}
+h2{font-size:22px;letter-spacing:-.01em;font-weight:600;margin-bottom:4px}
+.m p{font-size:14px;color:var(--mute)}
+.go{font-size:13px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);transition:background .2s,color .2s;white-space:nowrap}
+footer{margin-top:48px;padding-top:28px;border-top:1px solid var(--line);display:flex;gap:28px;flex-wrap:wrap;color:var(--mute);font-size:14px}
+footer a{color:var(--ink)}
+/* viewer: one variant at a time, full screen, with a bar to go back */
+.vw{position:fixed;inset:0;z-index:50;display:none;flex-direction:column;background:#000}
+.vw.on{display:flex}
+.bar{flex:none;display:flex;align-items:center;gap:8px;height:52px;padding:0 10px;padding-top:env(safe-area-inset-top);box-sizing:content-box;background:#111214;border-bottom:1px solid rgba(255,255,255,.08);color:#EEEBE5}
+.bar button,.bar a{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 14px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:transparent;color:inherit;font:500 14px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;text-decoration:none}
+.bar .back{background:#EEEBE5;color:#111214;border-color:#EEEBE5}
+.bar svg{width:16px;height:16px}
+.bar .t{flex:1;min-width:0;text-align:center;font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t small{color:#8E8A83;font-weight:400;margin-right:6px}
+.bar .nv{width:38px;padding:0}
+@media (hover:hover){.bar button:hover,.bar a:hover{border-color:rgba(255,255,255,.4)}}
+.vw iframe{flex:1;width:100%;border:0;background:#fff}
+body.lock{overflow:hidden}
+@media (max-width:820px){body{padding:max(36px,env(safe-area-inset-top)) 16px 56px}header,ul{grid-template-columns:1fr}.m{grid-template-columns:36px 1fr}.go{display:none}.bar .back span{display:none}.bar .back{width:38px;padding:0}}
+</style></head><body><div class="wrap">
+<header><div><div class="brand"><img src="v1/img/pph-mark.svg" alt=""><span>Prime Property Holdings</span></div><h1>Варианты дизайна сайта</h1></div>
+<p>Восемь вариантов главной страницы. Во всех — русский и узбекский языки, десять направлений, клиенты и форма заявки. Нажмите на карточку, чтобы открыть вариант.</p></header>
+<ul>
+<li><a href="#v1"><img src="th/v1.webp" alt="Вариант 1 «Монограмма»" width="720" height="450" loading="eager"><div class="m"><span class="n">01</span><div><h2>Монограмма</h2><p>Светлая классика: большой знак PPH, небо и дорога, мягкий звук при прокрутке.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v2"><img src="th/v2.webp" alt="Вариант 2 «Прозрачность»" width="720" height="450" loading="eager"><div class="m"><span class="n">02</span><div><h2>Прозрачность</h2><p>Тёмное стекло и объёмный знак — спокойная, строгая подача.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v3"><img src="th/v3.webp" alt="Вариант 3 «Prime»" width="720" height="450" loading="eager"><div class="m"><span class="n">03</span><div><h2>Prime</h2><p>Слово PRIME за башней, каждое направление — отдельная сцена.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v4"><img src="th/v4.webp" alt="Вариант 4 «Bento»" width="720" height="450" loading="eager"><div class="m"><span class="n">04</span><div><h2>Bento</h2><p>Светлая сетка карточек: всё о компании на одном экране.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v5"><img src="th/v5.webp" alt="Вариант 5 «Папка»" width="720" height="450" loading="lazy"><div class="m"><span class="n">05</span><div><h2>Папка</h2><p>3D-папка с документами: каждое дело собрано в одной папке.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v6"><img src="th/v6.webp" alt="Вариант 6 «Объекты»" width="720" height="450" loading="lazy"><div class="m"><span class="n">06</span><div><h2>Объекты</h2><p>Тёмные 3D-объекты, которые меняются вместе с направлениями.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v7"><img src="th/v7.webp" alt="Вариант 7 «Туман»" width="720" height="450" loading="lazy"><div class="m"><span class="n">07</span><div><h2>Туман</h2><p>Светящееся кольцо в тумане, текст проявляется при чтении.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+<li><a href="#v8"><img src="th/v8.webp" alt="Вариант 8 «Ядро»" width="720" height="450" loading="lazy"><div class="m"><span class="n">08</span><div><h2>Ядро</h2><p>Чёрно-золотой зал с узорами гирих, золотая пыль в луче света.</p></div><span class="go" aria-hidden="true">Открыть</span></div></a></li>
+</ul>
+<footer><span>Prime Property Holdings</span><span>+998 77 499-09-09</span><span>г. Ташкент, Мирабадский район, МСГ «Ойбек», ул. Фидокор, 30</span></footer>
+</div>
+<div class="vw" id="vw" role="dialog" aria-modal="true" aria-label="Просмотр варианта">
+  <div class="bar">
+    <button class="back" type="button" id="back" aria-label="Все варианты"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Все варианты</span></button>
+    <div class="t" id="ttl"></div>
+    <button class="nv" type="button" id="prev" aria-label="Предыдущий вариант"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="nv" type="button" id="next" aria-label="Следующий вариант"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <iframe id="fr" title="Вариант сайта" allow="autoplay"></iframe>
+</div>
+<script>
+(function(){
+  var N={"v1": "Монограмма", "v2": "Прозрачность", "v3": "Prime", "v4": "Bento", "v5": "Папка", "v6": "Объекты", "v7": "Туман", "v8": "Ядро"}, K=Object.keys(N), vw=document.getElementById('vw'), fr=document.getElementById('fr'), ttl=document.getElementById('ttl'), last=null, y=0
+  function show(){
+    var k=location.hash.slice(1)
+    if(N[k]){
+      if(!vw.classList.contains('on')) y=scrollY
+      var i=K.indexOf(k); ttl.innerHTML='<small>'+String(i+1).padStart(2,'0')+'/08</small>'+N[k]
+      if(last!==k){fr.src=k+'/index.html';last=k}
+      vw.classList.add('on');document.body.classList.add('lock');document.title='«'+N[k]+'» — Prime Property Holdings'
+      setTimeout(function(){try{fr.focus()}catch(e){}},50)
+    }else{
+      vw.classList.remove('on');document.body.classList.remove('lock');document.title='Prime Property Holdings — варианты сайта'
+      if(last){fr.src='about:blank';last=null;scrollTo(0,y)}
+    }
+  }
+  function go(d){var i=K.indexOf(location.hash.slice(1));location.hash=K[(i+d+K.length)%K.length]}
+  document.getElementById('back').onclick=function(){location.hash=''}
+  document.getElementById('prev').onclick=function(){go(-1)}
+  document.getElementById('next').onclick=function(){go(1)}
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&vw.classList.contains('on'))location.hash=''})
+  addEventListener('hashchange',show);show()
+})()
+</script>
+</body></html>
