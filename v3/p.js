@@ -28,6 +28,12 @@
     })
   })
 
+  // phones: cards rise into view one by one
+  if (PH && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { rootMargin: '0px 0px -8% 0px' })
+    cards.forEach(function (c) { io.observe(c) })
+  } else cards.forEach(function (c) { c.classList.add('in') })
+
   // "discuss" buttons preselect the topic in the form
   d.querySelectorAll('[data-topic]').forEach(function (a) {
     a.addEventListener('click', function () {
@@ -45,7 +51,7 @@
     if (!reduce) stage.style.setProperty('--p', hp.toFixed(4))
     hd.classList.toggle('hd--solid', scrollY > hero.offsetHeight - vh * 0.5 - 80)
     // stacking: a card recedes as the next one slides over it
-    if (reduce) return
+    if (reduce || PH) return
     var vis = cards.filter(function (c) { return !c.hidden })
     for (var i = 0; i < vis.length; i++) {
       var c = vis[i], n = vis[i + 1], s = 0
@@ -74,20 +80,4 @@
       })
     })
   })
-})()
-
-/* hero name: stretch "PROPERTY HOLDINGS" to the exact width of "PRIME" */
-;(function () {
-  var w1 = document.querySelector('.hero__word .w1'), w2 = document.querySelector('.hero__word .w2')
-  if (!w1 || !w2) return
-  function fit() {
-    w2.style.fontSize = ''
-    var base = parseFloat(getComputedStyle(w2).fontSize)
-    var a = w1.getBoundingClientRect().width, b = w2.getBoundingClientRect().width
-    if (a && b) w2.style.fontSize = (base * a / b).toFixed(2) + 'px'
-  }
-  fit()
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit)
-  var lw = innerWidth
-  addEventListener('resize', function () { if (innerWidth !== lw) { lw = innerWidth; fit() } })
 })()
