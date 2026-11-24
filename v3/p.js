@@ -81,3 +81,78 @@
     })
   })
 })()
+
+/* motion set — runs after the language pass in pph.js, so translated text gets split too */
+;(function () {
+  var d = document, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // 1) headings: wrap every word so it can rise out of a blur
+  function words(el) {
+    var i = 0
+    ;(function walk(n) {
+      [].slice.call(n.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var f = d.createDocumentFragment()
+          c.nodeValue.split(/(\s+)/).forEach(function (p) {
+            if (!p) return
+            if (/^\s+$/.test(p)) { f.appendChild(d.createTextNode(p)); return }
+            var s = d.createElement('span'); s.className = 'wd'; s.style.setProperty('--w', i++); s.textContent = p; f.appendChild(s)
+          })
+          c.parentNode.replaceChild(f, c)
+        } else if (c.nodeType === 1) walk(c)
+      })
+    })(el)
+  }
+  d.querySelectorAll('.hero__title em, .head__t').forEach(words)
+
+  // 2) hero facts count up once the hero has loaded
+  var counted = false
+  function count() {
+    if (counted) return; counted = true
+    d.querySelectorAll('.hero__facts dt').forEach(function (dt) {
+      var to = parseInt(dt.textContent, 10); if (!to || reduce) return
+      var t0 = 0
+      dt.textContent = '0'
+      requestAnimationFrame(function f(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 1500); dt.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f) })
+    })
+  }
+  setTimeout(count, 1300)
+
+  // 3) seal: stamp a card's document once its footer is well in view
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.closest('.sc').classList.add('stamped'); so.unobserve(e.target) } })
+    }, { threshold: 0.9 })
+    d.querySelectorAll('.sc__doc').forEach(function (el) { so.observe(el) })
+  } else d.querySelectorAll('.sc').forEach(function (c) { c.classList.add('stamped') })
+
+  // 4) steps line follows the scroll through the process section
+  var steps = d.querySelector('.steps'), items = steps ? [].slice.call(steps.children) : []
+  function line() {
+    if (!steps) return
+    var r = steps.getBoundingClientRect(), vh = innerHeight
+    var p = Math.min(1, Math.max(0, (vh * 0.78 - r.top) / (r.height * 0.92)))
+    steps.style.setProperty('--p', p.toFixed(3))
+    items.forEach(function (s, i) { s.classList.toggle('on', reduce || p >= i / (items.length - 1) - 0.02) })
+  }
+  var tk = false
+  addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(function () { tk = false; line() }) } }, { passive: true })
+  addEventListener('resize', line); line()
+
+  // 5) clients ribbon: a second copy of the logos makes the loop seamless
+  var tr = d.querySelector('.cl__track')
+  if (tr) { var cp = tr.firstElementChild.cloneNode(true); cp.setAttribute('aria-hidden', 'true'); cp.querySelectorAll('img').forEach(function (i) { i.alt = '' }); tr.appendChild(cp) }
+
+  // 6) magnetic buttons, mouse only
+  if (!reduce && matchMedia('(pointer: fine)').matches) {
+    d.querySelectorAll('.mag').forEach(function (m) {
+      var zone = m.parentNode
+      zone.addEventListener('mousemove', function (e) {
+        var r = m.getBoundingClientRect(), x = e.clientX - (r.left + r.width / 2), y = e.clientY - (r.top + r.height / 2)
+        if (Math.hypot(x, y) < 160) { m.style.transform = 'translate(' + x * .25 + 'px,' + y * .35 + 'px)'; m.firstChild.style.transform = 'translate(' + x * .1 + 'px,' + y * .14 + 'px)' }
+        else { m.style.transform = ''; m.firstChild.style.transform = '' }
+      })
+      zone.addEventListener('mouseleave', function () { m.style.transform = ''; m.firstChild.style.transform = '' })
+    })
+  }
+})()
