@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prime — animatsiya variantlari</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:IT;font-weight:200;font-display:swap;src:url(../v3/fonts/inter-tight-latin-200-normal.woff2) format("woff2")}
+@font-face{font-family:IT;font-weight:300;font-display:swap;src:url(../v3/fonts/inter-tight-cyrillic-300-normal.woff2) format("woff2");unicode-range:U+0400-045F}
+@font-face{font-family:IT;font-weight:300;font-display:swap;src:url(../v3/fonts/inter-tight-latin-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:IT;font-weight:400;font-display:swap;src:url(../v3/fonts/inter-tight-cyrillic-400-normal.woff2) format("woff2");unicode-range:U+0400-045F}
+@font-face{font-family:IT;font-weight:400;font-display:swap;src:url(../v3/fonts/inter-tight-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:IT;font-weight:500;font-display:swap;src:url(../v3/fonts/inter-tight-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:IT;font-weight:500;font-display:swap;src:url(../v3/fonts/inter-tight-cyrillic-500-normal.woff2) format("woff2");unicode-range:U+0400-045F}
+@font-face{font-family:CG;font-style:italic;font-weight:400;font-display:swap;src:url(../v3/fonts/cormorant-garamond-cyrillic-400-italic.woff2) format("woff2");unicode-range:U+0400-045F}
+@font-face{font-family:CG;font-style:italic;font-weight:400;font-display:swap;src:url(../v3/fonts/cormorant-garamond-latin-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+:root{--lime:#ECE7DE;--paper:#F6F2EB;--ink:#24221D;--mut:#6B6558;--olive:#4D4930;--dusk:#2A2824;--cream:#F3EEE5;--seal:#2F55A4;--ease:cubic-bezier(.2,.7,.2,1);--pad:clamp(18px,4vw,56px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--lime);color:var(--ink);font:400 16px/1.55 IT,system-ui,sans-serif}
+em{font-family:CG,Georgia,serif;font-style:italic;font-weight:400}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.top{padding:28px var(--pad) 8px}
+.top h1{font-weight:300;font-size:clamp(28px,5vw,52px);letter-spacing:-.02em;line-height:1}
+.top p{color:var(--mut);margin-top:10px;max-width:620px;font-size:15px}
+.demo{padding:40px var(--pad) 0}
+.lab{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.lab h2{font-size:15px;font-weight:500;letter-spacing:.01em}
+.lab h2 b{display:inline-grid;place-items:center;width:28px;height:28px;margin-right:10px;border-radius:50%;background:var(--olive);color:var(--cream);font-size:13px}
+.rep{height:40px;padding:0 16px;border:1px solid rgba(36,34,29,.2);border-radius:3px;font-size:14px;flex:none}
+.note{font-size:13.5px;color:var(--mut);margin-top:10px;max-width:640px}
+.stage{position:relative;border-radius:6px;overflow:hidden;background:var(--dusk);color:var(--cream)}
+
+/* 1 — cut reveal */
+.s1{min-height:min(78svh,640px);display:flex;align-items:flex-end;padding:clamp(22px,4vw,48px);background:var(--dusk) center top/cover no-repeat;background-image:linear-gradient(180deg,rgba(20,19,16,.25),rgba(20,19,16,.1) 35%,rgba(20,19,16,.85)),url(../v3/img/p-hero.webp)}
+.name{font-weight:300;text-transform:uppercase;letter-spacing:-.03em;line-height:.9;font-size:clamp(44px,8vw,120px)}
+.name .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.name .ln>span{display:block;transform:translateY(105%);clip-path:inset(0 0 100% 0)}
+.s1.go .name .ln>span{transform:none;clip-path:inset(0 0 0 0);transition:transform 1.2s var(--ease),clip-path 1.2s var(--ease)}
+.s1.go .ln:nth-child(2)>span{transition-delay:.12s}.s1.go .ln:nth-child(3)>span{transition-delay:.24s}
+.sub{display:block;margin-top:.5em;font-size:clamp(22px,2.6vw,36px)}
+.sub .w{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(.25em)}
+.s1.go .sub .w{opacity:1;filter:none;transform:none;transition:opacity .9s ease,filter .9s ease,transform .9s var(--ease)}
+
+/* 2 — blur words (standalone) */
+.s2{padding:clamp(28px,5vw,64px);background:var(--paper);color:var(--ink)}
+.s2 .big{font-weight:300;text-transform:uppercase;letter-spacing:-.025em;font-size:clamp(30px,5vw,64px);line-height:.98}
+.s2 .big em{text-transform:none;color:var(--olive);font-size:.72em}
+.s2 .w{display:inline-block;opacity:0;filter:blur(12px);transform:translateY(.2em)}
+.s2.go .w{opacity:1;filter:none;transform:none;transition:opacity .8s ease,filter .8s ease,transform .8s var(--ease)}
+
+/* 3 — counters */
+.s3{display:flex;flex-wrap:wrap;gap:0;padding:clamp(24px,4vw,44px)}
+.s3 div{display:flex;align-items:center;gap:14px;padding:10px 28px;border-left:1px solid rgba(243,238,229,.3)}
+.s3 div:first-child{border-left:0;padding-left:0}
+.s3 dt{font:italic 400 clamp(52px,7vw,84px)/1 CG,serif;min-width:1.1em;font-variant-numeric:tabular-nums}
+.s3 dd{font-size:14px;line-height:1.35;opacity:.86}
+
+/* 4 — stamp */
+.s4{display:grid;grid-template-columns:1.2fr 1fr}
+.s4 .ph{min-height:360px;background:var(--dusk) center/cover;background-image:url(../v3/img/p-s03.webp)}
+.s4 .tx{padding:clamp(22px,3.4vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.s4 h3{font-weight:300;text-transform:uppercase;letter-spacing:-.025em;font-size:clamp(30px,4vw,56px);line-height:.95}
+.s4 p{font-size:15px;opacity:.9;margin-top:12px}
+.doc{position:relative;display:flex;align-items:center;gap:6px;min-height:120px}
+.doc .t{font-size:clamp(24px,2.6vw,36px);line-height:1.1}
+.doc .t span{font:italic 400 .62em CG,serif;opacity:.75}
+.seal{position:absolute;right:0;top:50%;width:clamp(104px,12vw,138px);aspect-ratio:1;margin-top:calc(clamp(104px,12vw,138px) / -2);opacity:0;transform:scale(2.4) rotate(-30deg);pointer-events:none}
+.seal svg{width:100%;height:100%;display:block}
+.s4.go .seal{animation:stamp .55s cubic-bezier(.5,0,.75,0) .45s forwards}
+.s4.go .stage-shake{animation:shake .32s ease 1s}
+@keyframes stamp{0%{opacity:0;transform:scale(2.4) rotate(-30deg)}70%{opacity:.95;transform:scale(.94) rotate(-11deg)}100%{opacity:.92;transform:scale(1) rotate(-12deg)}}
+@keyframes shake{0%,100%{transform:none}30%{transform:translateY(2px)}60%{transform:translateY(-1px)}}
+.ink{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(47,85,164,.0) 55%,rgba(47,85,164,.18) 70%,transparent 72%);opacity:0}
+.s4.go .ink{animation:ink .9s ease 1s forwards}
+@keyframes ink{from{opacity:.9;transform:scale(.8)}to{opacity:0;transform:scale(1.5)}}
+
+/* 5 — curtain */
+.s5{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:none}
+.s5 figure{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#d8d1c4}
+.s5 .im{position:absolute;inset:0;background:center/cover;clip-path:inset(100% 0 0 0);transform:scale(1.15)}
+.s5.go .im{clip-path:inset(0 0 0 0);transform:none;transition:clip-path 1.3s var(--ease),transform 1.8s var(--ease)}
+.s5.go figure:nth-child(2) .im{transition-delay:.15s}.s5.go figure:nth-child(3) .im{transition-delay:.3s}
+.s5 figcaption{position:absolute;left:12px;bottom:10px;color:var(--cream);font-size:14px;text-shadow:0 1px 8px rgba(0,0,0,.6);opacity:0;transform:translateY(8px)}
+.s5.go figcaption{opacity:1;transform:none;transition:opacity .6s ease .9s,transform .6s ease .9s}
+
+/* 6 — steps line */
+.s6{background:var(--paper);color:var(--ink);padding:clamp(22px,3.4vw,44px)}
+.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:34px}
+.track .rail,.track .fill{position:absolute;top:13px;left:13px;right:13px;height:2px;background:rgba(36,34,29,.14)}
+.track .fill{background:var(--olive);right:auto;width:calc((100% - 26px) * var(--p,0))}
+.stp{position:relative}
+.stp i{position:absolute;top:-34px;left:0;width:28px;height:28px;border-radius:50%;background:var(--paper);border:2px solid rgba(36,34,29,.2);transition:background-color .3s ease,border-color .3s ease,transform .3s ease}
+.stp.on i{background:var(--olive);border-color:var(--olive);transform:scale(1.1)}
+.stp b{font:italic 400 34px/1 CG,serif;color:var(--olive);display:block;margin-top:10px}
+.stp h4{font-weight:400;font-size:19px;margin:6px 0 4px}
+.stp p{font-size:14.5px;color:var(--mut)}
+.stp{opacity:.45;transition:opacity .4s ease}.stp.on{opacity:1}
+.s6wrap{height:220svh}
+.s6sticky{position:sticky;top:12px}
+
+/* 7 — marquee */
+.s7{background:var(--paper);padding:26px 0;overflow:hidden;border-radius:6px}
+.mq{display:flex;width:max-content;animation:mq 36s linear infinite}
+.s7:hover .mq{animation-play-state:paused}
+.mq ul{display:flex;list-style:none}
+.mq li{width:clamp(150px,18vw,220px);height:90px;display:grid;place-items:center;padding:0 26px;border-left:1px solid rgba(36,34,29,.12)}
+.mq img{max-height:54px;width:auto;filter:grayscale(1);mix-blend-mode:multiply;opacity:.78;transition:opacity .25s ease,filter .25s ease}
+.mq li:hover img{opacity:1;filter:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* 8 — magnetic */
+.s8{display:grid;place-items:center;min-height:260px;padding:30px;background:var(--dusk) center/cover;background-image:linear-gradient(rgba(20,19,16,.55),rgba(20,19,16,.55)),url(../v3/img/p-contact.webp)}
+.mag{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;height:62px;padding:0 34px;border-radius:3px;background:var(--cream);color:var(--ink);font-weight:500;font-size:16px;transition:transform .35s var(--ease)}
+.mag span{display:block;transition:transform .35s var(--ease)}
+
+.end{padding:40px var(--pad) 60px;color:var(--mut);font-size:14px}
+@media (max-width:760px){
+  .s4{grid-template-columns:1fr}.s4 .ph{min-height:0;aspect-ratio:4/3;background-image:url(../v3/img/p-s03-m.webp)}
+  .s5{grid-template-columns:1fr}
+  .track{grid-template-columns:1fr;gap:22px;padding:0 0 0 44px}
+  .track .rail,.track .fill{top:0;bottom:0;left:13px;right:auto;width:2px;height:auto}
+  .track .fill{height:calc(100% * var(--p,0));bottom:auto}
+  .stp i{top:0;left:-44px}
+  .stp b{margin-top:0}
+  .s3 div{padding:8px 16px}
+  .s6wrap{height:170svh}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.name .ln>span,.sub .w,.s2 .w,.s5 .im{transform:none!important;clip-path:none!important;opacity:1!important;filter:none!important}.seal{opacity:.92;transform:rotate(-12deg)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Prime — animatsiya variantlari</h1>
+  <p>Har bir blok o'z animatsiyasini ko'rsatadi: ekranga kirganda o'zi boshlanadi, «Qayta» tugmasi bilan yana ko'rish mumkin. Yoqqanlarining raqamini yozing — saytga o'shalarni qo'yaman.</p>
+</header>
+
+<section class="demo">
+  <div class="lab"><h2><b>1</b>Nomning «kesib ochilishi» + kursiv qator xiradan aniqlashadi</h2><button class="rep" data-t="d1">Qayta</button></div>
+  <div class="stage s1" id="d1">
+    <h3 class="name"><span class="ln"><span>Prime</span></span><span class="ln"><span>Property</span></span><span class="ln"><span>Holdings</span></span>
+      <em class="sub" data-words>Консалтинг для бизнеса и государства</em></h3>
+  </div>
+  <p class="note">Hero uchun. Har bir qator pardadek pastdan ochiladi, so'ng kursiv qator so'zma-so'z aniqlashadi.</p>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>2</b>Bo'lim sarlavhasi so'zma-so'z paydo bo'ladi</h2><button class="rep" data-t="d2">Qayta</button></div>
+  <div class="stage s2" id="d2"><p class="big" data-words>Какая задача <em>стоит перед вами?</em></p></div>
+  <p class="note">Barcha bo'lim sarlavhalari uchun (Услуги, Как работаем, Кому помогаем…).</p>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>3</b>Raqamlar sanab chiqadi</h2><button class="rep" data-t="d3">Qayta</button></div>
+  <dl class="stage s3" id="d3">
+    <div><dt data-n="10">0</dt><dd>направлений<br>консалтинга</dd></div>
+    <div><dt data-n="2">0</dt><dd>сектора: бизнес<br>и государство</dd></div>
+    <div><dt data-n="1">0</dt><dd>итоговый документ<br>в каждой задаче</dd></div>
+  </dl>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>4</b>Muhr bosiladi — «har bir ish hujjat bilan tugaydi»</h2><button class="rep" data-t="d4">Qayta</button></div>
+  <div class="stage s4" id="d4">
+    <div class="ph" role="img" aria-label="Soliq inspeksiyasi binosi va akt"></div>
+    <div class="tx stage-shake">
+      <div><h3>Налоги</h3><p>Налоговое планирование, сопровождение проверок, возражения и обжалование решений.</p></div>
+      <div class="doc"><p class="t"><span>итог —</span> <em>Акт налоговой проверки</em></p>
+        <div class="seal"><i class="ink"></i>
+          <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="c" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+            <g fill="none" stroke="#2F55A4" stroke-width="2.4"><circle cx="60" cy="60" r="56"/><circle cx="60" cy="60" r="35"/></g>
+            <text font-family="IT,Arial" font-size="9.6" font-weight="500" letter-spacing="2.2" fill="#2F55A4"><textPath href="#c">PRIME PROPERTY HOLDINGS • TOSHKENT •</textPath></text>
+            <text x="60" y="56" text-anchor="middle" font-family="IT,Arial" font-weight="500" font-size="11" fill="#2F55A4" letter-spacing="1">ИСПОЛНЕНО</text>
+            <text x="60" y="72" text-anchor="middle" font-family="CG,Georgia,serif" font-style="italic" font-size="13" fill="#2F55A4">2026</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Xizmat kartalari uchun: karta ekranga kirganda «итог» qatori yoniga ko'k muhr tushib, bosiladi. Har bir kartada o'z hujjati.</p>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>5</b>Rasm pardadek ochiladi</h2><button class="rep" data-t="d5">Qayta</button></div>
+  <div class="stage s5" id="d5">
+    <figure><div class="im" style="background-image:url(../v3/img/p-s01-m.webp)"></div><figcaption>Реорганизация</figcaption></figure>
+    <figure><div class="im" style="background-image:url(../v3/img/p-s08-m.webp)"></div><figcaption>Бизнес-планы и ТЭО</figcaption></figure>
+    <figure><div class="im" style="background-image:url(../v3/img/p-s07-m.webp)"></div><figcaption>Проекты ГЧП</figcaption></figure>
+  </div>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>6</b>Bosqichlar chizig'i — sahifani aylantiring</h2></div>
+  <div class="s6wrap" id="d6w"><div class="s6sticky">
+    <div class="stage s6" id="d6">
+      <div class="track"><span class="rail"></span><span class="fill"></span>
+        <div class="stp"><i></i><b>01</b><h4>Заявка</h4><p>Звонок или форма на сайте.</p></div>
+        <div class="stp"><i></i><b>02</b><h4>Разбор задачи</h4><p>Изучаем ситуацию, называем сроки.</p></div>
+        <div class="stp"><i></i><b>03</b><h4>Работа</h4><p>Документы и согласования с госорганами.</p></div>
+        <div class="stp"><i></i><b>04</b><h4>Документ</h4><p>Акт, заключение или отчёт — у вас на руках.</p></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>7</b>Mijozlar logotiplari lentasi</h2></div>
+  <div class="s7"><div class="mq" id="mq"></div></div>
+  <p class="note">Doimiy sekin suzib turadi; kompyuterda sichqoncha ustiga kelsa to'xtaydi va logotip rangli bo'ladi.</p>
+</section>
+
+<section class="demo">
+  <div class="lab"><h2><b>8</b>Magnit tugma (faqat kompyuterda)</h2></div>
+  <div class="stage s8"><a class="mag" href="#" onclick="return false"><span>Получить консультацию</span></a></div>
+  <p class="note">Sichqonchani tugma atrofida yurgizing — tugma unga tortiladi. Telefonda bu effekt bo'lmaydi.</p>
+</section>
+
+<p class="end">Prime Property Holdings · animatsiya namunalari</p>
+
+<script>
+(function(){
+  var d=document
+  // split words
+  d.querySelectorAll('[data-words]').forEach(function(el){
+    var i=0
+    function walk(n){[].slice.call(n.childNodes).forEach(function(c){
+      if(c.nodeType===3){var f=d.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(d.createTextNode(p));return}var s=d.createElement('span');s.className='w';s.style.transitionDelay=(0.55+i++*0.09)+'s';s.textContent=p;f.appendChild(s)});c.replaceWith(f)}
+      else walk(c)})}
+    walk(el)
+  })
+  d.querySelectorAll('.s2 .w').forEach(function(w,i){w.style.transitionDelay=(i*0.09)+'s'})
+  // counters
+  function count(box){box.querySelectorAll('[data-n]').forEach(function(dt){var to=+dt.dataset.n,t0=null;function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3);dt.textContent=Math.round(to*e);if(k<1)requestAnimationFrame(f)}dt.textContent='0';requestAnimationFrame(f)})}
+  function play(el){el.classList.remove('go');void el.offsetWidth;el.classList.add('go');if(el.id==='d3')count(el)}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){play(e.target);io.unobserve(e.target)}})},{threshold:.35})
+  ;['d1','d2','d3','d4','d5'].forEach(function(id){io.observe(d.getElementById(id))})
+  d.querySelectorAll('.rep').forEach(function(b){b.addEventListener('click',function(){play(d.getElementById(b.dataset.t))})})
+  // steps line
+  var w=d.getElementById('d6w'),box=d.getElementById('d6'),st=[].slice.call(box.querySelectorAll('.stp'))
+  function steps(){var r=w.getBoundingClientRect(),p=Math.min(1,Math.max(0,(-r.top+innerHeight*.15)/(r.height-innerHeight*.9)));box.style.setProperty('--p',p.toFixed(3));st.forEach(function(s,i){s.classList.toggle('on',p>=i/3-0.001)})}
+  addEventListener('scroll',function(){requestAnimationFrame(steps)},{passive:true});steps()
+  // marquee
+  var L=['shaffof','montella','sayhun','alutex','procab','beldersoy','xorazmshakar','krantas','megaplanet','oltintegirmon'],h=''
+  L.forEach(function(n){h+='<li><img src="../v3/img/logos/'+n+'.webp" alt="'+n+'" loading="lazy"></li>'})
+  d.getElementById('mq').innerHTML='<ul>'+h+'</ul><ul aria-hidden="true">'+h+'</ul>'
+  // magnetic
+  if(matchMedia('(pointer:fine)').matches){var m=d.querySelector('.mag'),z=m.parentNode
+    z.addEventListener('mousemove',function(e){var r=m.getBoundingClientRect(),x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2),dist=Math.hypot(x,y);if(dist<180){m.style.transform='translate('+x*.28+'px,'+y*.38+'px)';m.firstChild.style.transform='translate('+x*.12+'px,'+y*.16+'px)'}else{m.style.transform='';m.firstChild.style.transform=''}})
+    z.addEventListener('mouseleave',function(){m.style.transform='';m.firstChild.style.transform=''})}
+})()
+</script>
+</body>
+</html>
