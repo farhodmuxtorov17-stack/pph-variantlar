@@ -75,3 +75,19 @@
     })
   })
 })()
+
+/* hero name: stretch "PROPERTY HOLDINGS" to the exact width of "PRIME" */
+;(function () {
+  var w1 = document.querySelector('.hero__word .w1'), w2 = document.querySelector('.hero__word .w2')
+  if (!w1 || !w2) return
+  function fit() {
+    w2.style.fontSize = ''
+    var base = parseFloat(getComputedStyle(w2).fontSize)
+    var a = w1.getBoundingClientRect().width, b = w2.getBoundingClientRect().width
+    if (a && b) w2.style.fontSize = (base * a / b).toFixed(2) + 'px'
+  }
+  fit()
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit)
+  var lw = innerWidth
+  addEventListener('resize', function () { if (innerWidth !== lw) { lw = innerWidth; fit() } })
+})()
