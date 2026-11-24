@@ -7,6 +7,23 @@
 
   // reveal the word once the hero photo is decoded (or after 1.6 s on a slow link)
   var go = function () { root.classList.add('loaded') }
+
+  /* the big PRIME sits beside the tower, never behind it: size the word to the free space left of the tower */
+  var word = d.querySelector('.hero__word'), wsp = word && word.querySelector('span')
+  function fitWord() {
+    if (!wsp) return
+    var W = innerWidth, H = stage.clientHeight || innerHeight, mob = matchMedia('(max-aspect-ratio: 4/5)').matches
+    var iw = mob ? 600 : 1600, ih = mob ? 900 : 1000, tl = mob ? 0.443 : 0.527, px = mob ? 0.2 : 0.5
+    var s = Math.max(W / iw, H / ih), imw = iw * s, x = (W - imw) * px + tl * imw
+    x = W / 2 + (x - W / 2) * 1.1                      // hero image starts at scale 1.1
+    var L = parseFloat(getComputedStyle(word).paddingLeft) || 0
+    var target = x - L - W * (mob ? 0.035 : 0.022)
+    word.style.fontSize = ''
+    var fs = parseFloat(getComputedStyle(word).fontSize), wd = wsp.getBoundingClientRect().width
+    if (wd > 0 && target > 0) word.style.fontSize = Math.min(fs * target / wd, H * 0.34) + 'px'
+  }
+  fitWord(); addEventListener('resize', fitWord)
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitWord)
   var probe = new Image()
   probe.onload = probe.onerror = function () { requestAnimationFrame(go) }
   var m = matchMedia('(max-aspect-ratio: 4/5)').matches
